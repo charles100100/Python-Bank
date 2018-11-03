@@ -1,0 +1,27 @@
+# Quandl API will be used here, with Pandas as the data manipulation package
+import quandl
+import pandas as pd
+
+
+# This is my API key, we can use this one for the contests
+quandl.ApiConfig.api_key = "1M13C8oev8ysj-EztUis"
+
+
+#List of tickers are pulled from iShares Russell 1000 ETF. Could use a ddifferent source for the list?
+R1000 = ['AAPL', 'MSFT']
+
+#Loop to pull all the data
+for str in R1000:
+    
+    tble = "EOD" + str    
+    data = quandl.get("EOD/HD", trim_start = "2018-10-31", trim_end = "2018-11-01")
+    data["ticker"] = str
+    if Counter == 0:
+        data1000 = data
+    else:
+        data1000 = pd.concat([data1000, data])
+    Counter += 1
+
+# Save to a local csv file
+download_dir = "D:\DailyR1000.csv"
+data1000.to_csv(download_dir)
