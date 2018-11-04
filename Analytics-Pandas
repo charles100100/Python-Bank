@@ -4,7 +4,6 @@ import pandas as pd
 #https://medium.com/jbennetcodes/how-to-rewrite-your-sql-queries-in-pandas-and-more-149d341fc53e
 
 
-
 #read csv
 readPath = "W:/csv.csv")
 data = pd.read_csv(readPath)
@@ -12,18 +11,17 @@ data = pd.read_csv(readPath)
 # Determine the number of columns 
 data.shape[0]
 
+
 # SELECT statement equivalent (pick a list of columns)
 df.columnname
-df['columnname1', 'columnname2', 'columnname3']
+df[['columnname1', 'columnname2', 'columnname3']]
 
 # Select Unique
 df.columnname.unique()
 
-
 # WHERE STATEMENT Single criteria (filter rows by one criteria)
 data.query('a>b')
 df[df.a > df.b]
-
 
 # WHERE statement with multiple criteria
 df[('column' > 0) & ('column' < 0)]
@@ -35,3 +33,15 @@ data["newcolumn"]=data3["column"].str[:7]
 
 # append data
 df.append(df2)
+
+
+# Pivot Tables
+table = pivot_table(df, values='D', index=['A', 'B'], columns=['C'], aggfunc=np.sum)
+#flatten pivot
+flattened = pd.DataFrame(pivoted.to_records()) 
+
+# Sas type Merge tables
+newtable = table_one.merge(table_two, on=["Primkey"], how="inner")
+
+
+# 
