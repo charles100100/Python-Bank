@@ -44,4 +44,19 @@ flattened = pd.DataFrame(pivoted.to_records())
 newtable = table_one.merge(table_two, on=["Primkey"], how="inner")
 
 
-# 
+
+# Standard date time function
+from datetime import timedelta, date, datetime
+from pandas.tseries.offsets import BDay
+
+
+# Define the date
+dtStart = date.today()
+# dtStart=date(2007,12,5)
+
+# Calculating end date using data attrival (e.g. 120 days)
+dtEnd = dtStart - BDay(120)
+
+# Converts date into string
+dtStart_str=dtStart.strftime('%Y-%m-%d')
+dtEnd_str=dtEnd.strftime('%Y-%m-%d')
