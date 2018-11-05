@@ -36,7 +36,7 @@ df.append(df2)
 
 
 # Pivot Tables
-table = pivot_table(df, values='D', index=['A', 'B'], columns=['C'], aggfunc=np.sum)
+table = pd.pivot_table(df, values='D', index=['A', 'B'], columns=['C'], aggfunc=np.sum)
 #flatten pivot
 flattened = pd.DataFrame(pivoted.to_records()) 
 
